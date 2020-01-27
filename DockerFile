@@ -1,0 +1,9 @@
+FROM julia:1.2.0
+MAINTAINER Aurelio Amerio
+COPY . /app
+WORKDIR /app
+RUN julia -e 'using Pkg;Pkg.add("Joseki");using Joseki'
+RUN julia -e 'using Pkg;Pkg.add("JSON");using JSON'
+RUN julia -e 'using Pkg;Pkg.add("HTTP");using HTTP'
+EXPOSE 8000
+CMD julia -i server.jl
